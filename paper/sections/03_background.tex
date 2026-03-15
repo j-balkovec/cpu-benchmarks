@@ -1,0 +1,9 @@
+\section{Background}
+
+Performance in modern computing systems depends on several interacting factors, including algorithmic complexity, processor architecture, and memory hierarchy.
+
+Algorithmic complexity describes how the runtime of an algorithm grows as input size increases. Algorithms with quadratic complexity scale dramatically worse than algorithms with near-linear growth rates, particularly for large inputs.
+
+Modern processors rely heavily on hierarchical memory systems consisting of multiple levels of cache and main memory \cite{lam1991}. Accessing data stored in cache is significantly faster than accessing data from main memory. As a result, programs that access memory sequentially often perform substantially better than programs that access memory in irregular patterns \cite{mckee2004}.
+
+Additionally, performance scaling in modern computing is constrained by fundamental architectural limits such as Amdahl's law and the so-called memory wall \cite{hill2008, wulf1995}. These constraints suggest that efficient algorithms and memory-aware implementations remain critical even as raw computational power increases.

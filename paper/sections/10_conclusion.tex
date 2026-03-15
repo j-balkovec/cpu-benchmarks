@@ -1,0 +1,9 @@
+\section{Conclusion}
+
+This study investigated whether improvements in modern CPU performance reduce the need for efficient code. Through empirical experiments examining both algorithmic complexity and memory access patterns, the results demonstrate that efficient implementations remain essential for scalable software systems.
+
+The sorting experiment showed that algorithms with different asymptotic complexity diverge dramatically in practice as input sizes grow. Across the tested datasets, the performance gap between Bubble Sort and \texttt{std::sort} increased from hundreds to several thousand times as the input size increased. This behavior closely reflects the theoretical difference between quadratic \(O(n^2)\) and near-linear \(O(n \log n)\) growth.
+
+The cache locality experiment further demonstrated that implementation details can significantly affect performance even when algorithmic complexity remains identical. Traversing matrices in a memory-friendly row-major order consistently outperformed column-major traversal, with slowdowns exceeding fivefold for larger matrices due to reduced cache efficiency.
+
+Taken together, these results illustrate that improvements in processor speed do not eliminate the importance of efficient algorithms and memory-aware programming. Instead, they reinforce the need for software that is designed with both algorithmic complexity and hardware architecture in mind. As modern systems continue to scale in both data size and computational demand, understanding these principles remains fundamental to achieving high performance.

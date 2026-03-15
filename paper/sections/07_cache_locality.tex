@@ -1,0 +1,76 @@
+\section{Experiment 2: Cache Locality}
+
+The second experiment evaluates the impact of memory access patterns on runtime performance. While the previous experiment examined differences in algorithmic complexity, this experiment isolates a lower-level implementation factor: how programs interact with the processor's memory hierarchy.
+
+Modern processors rely heavily on hierarchical memory systems consisting of multiple cache levels positioned between the CPU and main memory. Accessing data from cache is significantly faster than retrieving it from main memory, so programs that reuse nearby memory locations tend to perform better due to improved spatial locality \cite{lam1991, mckee2004, hennessy2019}. As a result, the order in which data is traversed can have a measurable impact on runtime even when the number of arithmetic operations remains identical.
+
+To examine this effect, two traversal strategies were compared:
+
+\begin{itemize}
+\item Row-major traversal
+\item Column-major traversal
+\end{itemize}
+
+Both implementations perform the same total number of operations but differ in the order in which elements are accessed.
+
+In most C and C++ implementations, two-dimensional arrays are stored in \textit{row-major order}. For a matrix \(A\) with \(n\) rows and \(m\) columns, the memory address of element \(A[i,j]\) can be expressed as
+
+\[
+\text{addr}(A[i,j]) = B + (i \cdot m + j)\,s,
+\]
+
+where \(B\) is the base address of the array and \(s\) is the size of each element in bytes \cite{hennessy2019}. In this representation, consecutive elements of the same row occupy adjacent memory locations.
+
+Row-major traversal accesses the matrix in the order
+
+\[
+A[0,0], A[0,1], A[0,2], \dots
+\]
+
+which corresponds to sequential memory accesses. Because modern CPUs fetch memory in fixed-size blocks known as cache lines \cite{hennessy2019}, typically containing multiple adjacent elements, sequential access allows many operations to reuse data already present in cache.
+
+Column-major traversal, in contrast, accesses elements in the order
+
+\[
+A[0,0], A[1,0], A[2,0], \dots
+\]
+
+which produces a memory stride proportional to the row length. If each row contains \(m\) elements, the effective stride between consecutive accesses becomes
+
+\[
+\text{stride} = m \cdot s.
+\]
+
+When this stride exceeds the size of a cache line, each access is more likely to require fetching a new memory block from lower levels of the memory hierarchy. This behavior increases cache misses and significantly increases effective memory latency \cite{lam1991, mckee2004}.
+
+Importantly, both traversal strategies perform the same number of arithmetic operations and therefore have identical asymptotic complexity. The only difference lies in how the program interacts with the memory hierarchy. This makes the experiment a useful demonstration that implementation details (particularly memory locality) can strongly influence runtime performance even when algorithmic complexity remains unchanged.
+
+\subsection{Results}
+
+\begin{table}[ht]
+\centering
+\caption{Average runtime for row-major and column-major matrix traversal.}
+\label{tab:cache-results}
+\begin{tabular}{rrrr}
+\toprule
+Matrix size \(N\) & Row-major (s) & Column-major (s) & Slowdown \\
+\midrule
+1024 & 0.001017 & 0.002527 & 2.49$\times$ \\
+2048 & 0.004204 & 0.017667 & 4.20$\times$ \\
+4096 & 0.016051 & 0.092735 & 5.78$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.78\textwidth]{cache_runtime_clean.png}
+\caption{Runtime comparison between row-major and column-major traversal of an \(N \times N\) matrix.}
+\label{fig:cache-runtime}
+\end{figure}
+
+Figure~\ref{fig:cache-runtime} shows that row-major traversal consistently outperformed column-major traversal across all tested matrix sizes. For a matrix of dimension \(N = 1024\), row-major traversal required approximately \(1.02\times10^{-3}\) seconds on average, whereas column-major traversal required \(2.53\times10^{-3}\) seconds. When the matrix dimension increased to \(N = 2048\), runtimes increased to \(4.20\times10^{-3}\) seconds for row-major traversal and \(1.77\times10^{-2}\) seconds for column-major traversal. For the largest matrix tested (\(N = 4096\)), row-major traversal required \(1.61\times10^{-2}\) seconds, while column-major traversal required \(9.27\times10^{-2}\) seconds.
+
+Across all tested sizes, column-major traversal was consistently slower, reflecting the reduced cache efficiency associated with strided memory accesses.
+
+These results align with prior studies of memory hierarchy behavior, which demonstrate that spatial locality and cache-aware access patterns are critical factors in achieving high performance on modern architectures \cite{lam1991, mckee2004, hennessy2019}.

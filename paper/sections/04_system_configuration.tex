@@ -1,0 +1,5 @@
+\section{System Configuration}
+
+All experiments were conducted on a single Apple M2-based machine in order to maintain consistent hardware conditions across trials. The system uses Apple's M2 system-on-chip architecture with an 8-core CPU composed of four performance cores and four efficiency cores, together with unified memory and 100 GB/s memory bandwidth \cite{apple_m2_specs}. These architectural characteristics make the platform appropriate for studying the interaction between algorithmic behavior and memory access patterns.
+
+Modern processors depend heavily on hierarchical memory systems in which fast cache levels serve as intermediaries between the processor cores and main memory. Accessing data already present in cache is substantially faster than retrieving it from main memory, so the order in which programs traverse data can have a measurable effect on runtime \cite{lam1991, mckee2004}. For this reason, the cache-locality experiment in this paper is designed to isolate how memory access order influences performance even when the total amount of work remains fixed.

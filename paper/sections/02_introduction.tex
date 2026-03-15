@@ -1,0 +1,7 @@
+\section{Introduction}
+
+Modern CPUs provide enormous computational capability compared to earlier generations of hardware, largely due to advances in semiconductor scaling and processor architecture \cite{moore1965, dennard1974}. Multicore processors, deep cache hierarchies, and aggressive compiler optimizations allow programs to execute billions of instructions per second. Because of these improvements, it is sometimes argued that software developers no longer need to focus heavily on efficiency, since hardware performance can compensate for inefficient implementations.
+
+However, this perspective overlooks important aspects of computational performance. Algorithmic complexity and memory hierarchy continue to impose practical limits on program execution \cite{wulf1995}. Even powerful processors cannot overcome fundamental differences in algorithmic growth rates or inefficient memory access patterns.
+
+This paper investigates whether efficient code remains necessary in modern computing environments. Two experiments are conducted. The first compares two sorting algorithms with different computational complexity. The second evaluates how memory access patterns influence runtime through cache locality effects.

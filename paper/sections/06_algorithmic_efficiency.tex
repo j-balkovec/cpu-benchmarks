@@ -1,0 +1,101 @@
+\section{Experiment 1: Algorithmic Efficiency}
+
+The first experiment evaluates the effect of algorithmic complexity on runtime performance by comparing two sorting algorithms with fundamentally different growth rates.
+
+The first algorithm is Bubble Sort, a simple comparison-based method that repeatedly scans the array and swaps adjacent elements that are out of order \cite{knuth1998}. In the worst case, the algorithm performs a sequence of passes over the dataset, where each pass compares one fewer pair of elements than the previous one. The total number of comparisons can therefore be written as
+
+\[
+\sum_{i=1}^{n-1} i,
+\]
+
+which is the sum of the first \(n-1\) positive integers. Using the closed-form expression for an arithmetic series,
+
+\[
+\sum_{i=1}^{k} i = \frac{k(k+1)}{2},
+\]
+
+and substituting \(k = n-1\), we obtain
+
+\[
+\frac{n(n-1)}{2}.
+\]
+
+This leads directly to a time complexity of \(O(n^2)\), meaning that the number of required operations grows proportionally to the square of the input size \cite{knuth1998}. As \(n\) increases, this growth rate causes runtime to rise rapidly, making Bubble Sort impractical for large datasets.
+
+The second algorithm tested is the C++ standard library implementation \texttt{std::sort}. Modern implementations of \texttt{std::sort} use a hybrid algorithm known as \textit{introsort}, originally proposed by Musser \cite{musser1997}. Introsort combines multiple sorting strategies in order to achieve both strong theoretical guarantees and high practical performance \cite{musser1997, cppreference_sort}.
+
+Introsort begins with quicksort, a divide-and-conquer algorithm that partitions the input around a pivot and recursively sorts the resulting subarrays. When these partitions remain approximately balanced, the recurrence relation can be written as
+
+\[
+T(n) = 2T\!\left(\frac{n}{2}\right) + O(n),
+\]
+
+where the linear term represents the cost of partitioning at each level of recursion. This recurrence fits the standard form of the Master Theorem,
+
+\[
+T(n) = aT\!\left(\frac{n}{b}\right) + f(n),
+\]
+
+with \(a = 2\), \(b = 2\), and \(f(n) = O(n)\). Evaluating the comparison term gives
+
+\[
+n^{\log_b a} = n^{\log_2 2} = n.
+\]
+
+Because \(f(n) = \Theta(n)\), the recurrence falls into Case 2 of the Master Theorem, yielding
+
+\[
+T(n) = \Theta(n \log n)
+\]
+
+for the average-case runtime of quicksort \cite{cormen2009, sedgewick2011}. This asymptotic difference is substantial:
+
+\[
+n \log n \;\ll\; n^2 \quad \text{as } n \to \infty,
+\]
+
+so algorithms with \(O(n \log n)\) complexity scale far more effectively than quadratic algorithms as input size increases.
+
+Quicksort alone, however, does not guarantee this behavior in the worst case. If pivot selection repeatedly produces highly unbalanced partitions, the recurrence becomes
+
+\[
+T(n) = T(n-1) + O(n),
+\]
+
+which yields worst-case complexity \(O(n^2)\) \cite{knuth1998}. To avoid this degeneration, introsort monitors recursion depth and switches to heapsort once the depth exceeds a threshold proportional to
+
+\[
+2\log_2 n.
+\]
+
+Since heapsort guarantees \(O(n \log n)\) worst-case complexity, this transition ensures that the overall algorithm never degrades to quadratic behavior \cite{musser1997}. In addition, very small subarrays are typically handled using insertion sort, whose low constant overhead makes it efficient for small partitions \cite{cormen2009, sedgewick2011}.
+
+Because of this hybrid design, \texttt{std::sort} combines strong asymptotic guarantees with excellent practical performance. The purpose of this experiment is to evaluate how these theoretical differences appear in practice. Both algorithms were executed on identical datasets while varying the input size. By comparing the observed runtime growth of Bubble Sort and \texttt{std::sort}, the experiment tests whether improvements in modern processor performance reduce the practical importance of algorithmic efficiency.
+
+\subsection{Results}
+
+\begin{table}[ht]
+\centering
+\caption{Average runtime of Bubble Sort and \texttt{std::sort} for randomly ordered datasets.}
+\label{tab:sorting-results}
+\begin{tabular}{rrrr}
+\toprule
+Input size \(n\) & Bubble Sort (s) & \texttt{std::sort} (s) & Slowdown \\
+\midrule
+1,000   & 0.0288 & 0.000163 & 176$\times$ \\
+10,000  & 1.9004 & 0.000855 & 2,223$\times$ \\
+100,000 & 8.2739 & 0.001727 & 4,792$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.78\textwidth]{sorting_runtime_clean.png}
+\caption{Sorting runtime as a function of input size \(n\).}
+\label{fig:sorting-runtime}
+\end{figure}
+
+Figure~\ref{fig:sorting-runtime} shows a clear divergence in runtime growth between the two algorithms as input size increases. For random datasets of size \(n = 1{,}000\), Bubble Sort required an average runtime of \(2.88\times10^{-2}\) seconds, compared to \(1.63\times10^{-4}\) seconds for \texttt{std::sort}. When the dataset size increased to \(n = 10{,}000\), the runtime of Bubble Sort rose to approximately \(1.90\) seconds, while \texttt{std::sort} required only \(8.55\times10^{-4}\) seconds. For the largest dataset tested (\(n = 100{,}000\)), Bubble Sort required \(8.27\) seconds on average, whereas \texttt{std::sort} completed in approximately \(1.73\times10^{-3}\) seconds.
+
+These results show that runtime grows dramatically faster for Bubble Sort as input size increases, whereas the growth of \texttt{std::sort} remains comparatively modest. This behavior is consistent with the theoretical difference between quadratic \(O(n^2)\) and \(O(n \log n)\) complexity.

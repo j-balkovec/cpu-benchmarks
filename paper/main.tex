@@ -1,0 +1,48 @@
+% !TEX program = latexmk
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[final]{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{parskip}
+
+\geometry{margin=1in}
+\setstretch{1.08}
+\emergencystretch=2em
+\graphicspath{{figures/}}
+
+\title{Do Powerful CPUs Reduce the Need for Efficient Code? \\
+An Empirical Study of Algorithmic and Memory Performance}
+
+\author{Jakob Balkovec}
+\date{February 26, 2026}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/00_abstract}
+\input{sections/01_note}
+\input{sections/02_introduction}
+\input{sections/03_background}
+\input{sections/99_hypotheses}
+\input{sections/04_system_configuration}
+\input{sections/05_experimental_setup}
+\input{sections/06_algorithmic_efficiency}
+\input{sections/07_cache_locality}
+\input{sections/08_discussion}
+\input{sections/09_threats}
+\input{sections/10_conclusion}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,11 @@
+\section{Threats to Validity}
+
+Several limitations should be considered when interpreting these results. Benchmark timings may be influenced by background system activity, operating system scheduling, and other sources of runtime noise that are difficult to eliminate entirely. Although multiple trials were conducted in order to reduce this variability, small fluctuations in measured runtime may still occur.
+
+Additionally, the experiments were conducted on a single hardware platform. Modern processors vary widely in their cache sizes, memory bandwidth, and microarchitectural design. As a result, the absolute runtime values observed in this study may differ on other systems with different cache hierarchies or memory subsystems.
+
+The sorting experiments also used a limited set of dataset configurations (random, sorted, and reverse-sorted inputs). While these cases capture common input patterns, other distributions could influence the behavior of specific sorting algorithms.
+
+Finally, all programs were compiled using a single compiler configuration. Different compilers, optimization levels, or standard library implementations may produce slightly different performance characteristics.
+
+Despite these limitations, the observed trends align closely with well-established principles in computer architecture and algorithmic analysis. The results therefore provide a useful empirical illustration of how algorithmic complexity and memory locality affect performance on modern hardware.
