@@ -6,6 +6,11 @@
 \newblock \url{https://support.apple.com/en-us/111869}, 2022.
 \newblock Accessed March 14, 2026.
 
+\bibitem{balkovec2026benchmarks}
+Jakob Balkovec.
+\newblock Cpu benchmark experiments for algorithmic and cache performance.
+\newblock \url{https://github.com/j-balkovec/cpu-benchmarks}, 2026.
+
 \bibitem{cormen2009}
 Thomas~H. Cormen, Charles~E. Leiserson, Ronald~L. Rivest, and Clifford Stein.
 \newblock {\em Introduction to Algorithms}.

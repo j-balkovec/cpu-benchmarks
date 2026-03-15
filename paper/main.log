@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.19)  14 MAR 2026 14:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.19)  15 MAR 2026 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main
+**main.tex
 (./main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -545,7 +545,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ocal/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texli
 ve/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-
 dist/fonts/enc/dvips/lm/lm-mathex.enc}] [4]
-<figures/sorting_runtime_clean.png, id=124, 465.6597pt x 292.4526pt>
+<figures/sorting_runtime_clean.png, id=126, 465.6597pt x 292.4526pt>
 File: figures/sorting_runtime_clean.png Graphic file (type png)
 <use figures/sorting_runtime_clean.png>
 Package pdftex.def Info: figures/sorting_runtime_clean.png  used on input line 
@@ -553,15 +553,15 @@ Package pdftex.def Info: figures/sorting_runtime_clean.png  used on input line
 (pdftex.def)             Requested size: 366.40834pt x 230.11575pt.
  [5 <./figures/sorting_runtime_clean.png>])
 (./sections/07_cache_locality.tex [6]
-<figures/cache_runtime_clean.png, id=146, 467.346pt x 292.9344pt>
+<figures/cache_runtime_clean.png, id=148, 467.346pt x 292.9344pt>
 File: figures/cache_runtime_clean.png Graphic file (type png)
 <use figures/cache_runtime_clean.png>
 Package pdftex.def Info: figures/cache_runtime_clean.png  used on input line 67
 .
 (pdftex.def)             Requested size: 366.40834pt x 229.66347pt.
-) (./sections/08_discussion.tex [7]
-[8 <./figures/cache_runtime_clean.png>]) (./sections/09_threats.tex)
-(./sections/10_conclusion.tex [9]) (./main.bbl [10]) [11] (./main.aux)
+) (./sections/08_discussion.tex [7])
+(./sections/09_threats.tex [8 <./figures/cache_runtime_clean.png>])
+(./sections/10_conclusion.tex [9]) (./main.bbl) [10] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -570,13 +570,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 9261A9B08B5D2AC4999CA1BB1C2526F0;1513.
  ) 
 Here is how much of TeX's memory you used:
- 12334 strings out of 474116
- 196539 string characters out of 5743682
+ 12339 strings out of 474116
+ 196625 string characters out of 5743682
  1937187 words of memory out of 5000000
- 34285 multiletter control sequences out of 15000+600000
- 619019 words of font info for 147 fonts, out of 8000000 for 9000
+ 34286 multiletter control sequences out of 15000+600000
+ 619185 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,997b,564s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,1001b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/lo
 cal/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texliv
 e/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2024/tex
@@ -591,10 +591,10 @@ nts/type1/public/lm/lmri10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
 public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/
 lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
 
-Output written on main.pdf (11 pages, 499939 bytes).
+Output written on main.pdf (10 pages, 499464 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
+ 264 PDF objects out of 1000 (max. 8388607)
+ 213 compressed objects within 3 object streams
  44 named destinations out of 1000 (max. 500000)
  35435 words of extra memory for PDF output out of 35830 (max. 10000000)
 

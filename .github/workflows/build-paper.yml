@@ -1,0 +1,30 @@
+name: Build Paper
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-paper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX paper
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: paper
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Copy PDF to repository root
+        run: cp paper/main.pdf paper.pdf
+
+      - name: Upload paper artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: |
+            paper/main.pdf
+            paper.pdf
