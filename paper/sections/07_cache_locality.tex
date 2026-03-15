@@ -71,6 +71,4 @@ Matrix size \(N\) & Row-major (s) & Column-major (s) & Slowdown \\
 
 Figure~\ref{fig:cache-runtime} shows that row-major traversal consistently outperformed column-major traversal across all tested matrix sizes. For a matrix of dimension \(N = 1024\), row-major traversal required approximately \(1.02\times10^{-3}\) seconds on average, whereas column-major traversal required \(2.53\times10^{-3}\) seconds. When the matrix dimension increased to \(N = 2048\), runtimes increased to \(4.20\times10^{-3}\) seconds for row-major traversal and \(1.77\times10^{-2}\) seconds for column-major traversal. For the largest matrix tested (\(N = 4096\)), row-major traversal required \(1.61\times10^{-2}\) seconds, while column-major traversal required \(9.27\times10^{-2}\) seconds.
 
-Across all tested sizes, column-major traversal was consistently slower, reflecting the reduced cache efficiency associated with strided memory accesses.
-
-These results align with prior studies of memory hierarchy behavior, which demonstrate that spatial locality and cache-aware access patterns are critical factors in achieving high performance on modern architectures \cite{lam1991, mckee2004, hennessy2019}.
+Across all tested matrix sizes, column-major traversal was consistently slower than row-major traversal. As the matrix dimension increased, the difference in runtime between the two traversal strategies became progressively larger.
