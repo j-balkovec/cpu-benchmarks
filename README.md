@@ -4,6 +4,8 @@
 [![Last Commit](https://img.shields.io/github/last-commit/j-balkovec/cpu-benchmarks)](https://github.com/j-balkovec/cpu-benchmarks/commits)
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF-red)](paper.pdf)
 
+[![DOI](https://zenodo.org/badge/1182623542.svg)](https://doi.org/10.5281/zenodo.19038774)
+
 This repository contains the benchmark code and paper for:
 **Do Powerful CPUs Reduce the Need for Efficient Code?**
 
